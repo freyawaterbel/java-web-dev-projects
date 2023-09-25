@@ -1,5 +1,5 @@
 package org.launchcode;
-import java.util.Date;
+import java.util.HashMap;
 
 public class MenuItem {
     private String name;
@@ -56,10 +56,36 @@ public class MenuItem {
         this.category = category;
     }
 
-
-
-    void displayItem () {
-        System.out.println(this.name + ", $" + this.price + ", " + this.description);
+    public MenuItem(String name, int price, String description, String category) {
+        this(name, price, description, category, true);
     }
+
+    @Override
+    public String toString() {
+        return name + ", " + description + ", $" + price;
+    }
+
+    // method to make each menu item into a hashmap to add to menu
+//    public void hashItem() {
+//        HashMap<String, String> item = new HashMap<>();
+//        item.put("name", name);
+//
+//    }
+
+    @Override
+    public boolean equals(Object toBeCompared) {
+        if (toBeCompared == this) {
+            return true;
+        }
+        if (toBeCompared == null) {
+            return false;
+        }
+        if (toBeCompared.getClass() != getClass()) {
+            return false;
+        }
+        MenuItem theItem = (MenuItem) toBeCompared;
+        return theItem.getName() == getName() && theItem.getPrice() == getPrice();
+    }
+
 }
 
